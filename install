@@ -30,12 +30,14 @@ sudo apt install fzf ripgrep fd-find
 echo -e "\n* Installing NeoVim"
 sudo snap install nvim
 
-# Probably necessary for Lua (used heavily by LazyVim)? TODO revisit
+# Probably necessary for Lua (used heavily by LazyVim)?
+# Fixes Lua-related Query Error: "substitute"
 echo -e "\n* Installing luarocks"
-#sudo apt install luarocks
+sudo apt install luarocks
 
-# TODO needed??? For Markdown
-#sudo apt install nodejs
+# Also Fixes Lua-related Query Error: "substitute"
+echo -e "\n* Installing nodejs"
+sudo apt install nodejs
 
 # TODO needed???
 #sudo apt install build-essential
@@ -43,8 +45,9 @@ echo -e "\n* Installing luarocks"
 # Nerd Font: downloaded from https://www.nerdfonts.com/
 # Used by lazyvim a lot, for all sorts of ascii graphics, keyboard characters etc.
 # You want this, otherwise lazyvim will show lots of missing characters.
+# NOT NECESSARY FOR KITTY - probably Kitty comes in with NerdFonts bundled in.
 if [[ ! -e ~/.fonts/JetBrainsMonoNerdFont*.ttf ]]; then
-  echo -e "\n* Downloading Nerd Font"
+  #echo -e "\n* Downloading Nerd Font"
   #curl https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
   #unzip x JetBrainsMono.zip -d ~/.fonts/ -o
   #rm JetBrainsMono.zip
