@@ -48,7 +48,7 @@ sudo apt install build-essential
 # Used by lazyvim a lot, for all sorts of ascii graphics, keyboard characters etc.
 # You want this, otherwise lazyvim will show lots of missing characters.
 # NOT NECESSARY FOR KITTY - probably Kitty comes in with NerdFonts bundled in.
-if [[ ! -e ~/.fonts/JetBrainsMonoNerdFont*.ttf ]]; then
+#if [[ ! -e ~/.fonts/JetBrainsMonoNerdFont*.ttf ]]; then
   #echo -e "\n* Downloading Nerd Font"
   #curl https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
   #unzip x JetBrainsMono.zip -d ~/.fonts/ -o
@@ -59,9 +59,9 @@ if [[ ! -e ~/.fonts/JetBrainsMonoNerdFont*.ttf ]]; then
   
   # TODO is this necessary? Kitty have NerdFont bundled in?
   #read -p "change the font for your terminal to 'JetBrains Mono Nerd Font'"
-else
-  echo -e "\n* Nerd Font already installed"
-fi
+#else
+#  echo -e "\n* Nerd Font already installed"
+#fi
 
 # kitty - recommended for lazyvim
 echo -e "\n* Installing Kitty terminal"
