@@ -1,0 +1,66 @@
+#!/bin/bash
+set -e -o pipefail
+
+# Nuke any existing neovim configuration
+# neovim config files, here the lazyvim git repo is cloned
+rm -rf ~/.config/nvim
+# Some lua-related stuff
+rm -rf ~/.cache/nvim
+# All plugins, gems and lua stuff goes here
+rm -rf ~/.local/share/nvim
+# lazyvim/nvim logs go here
+rm -rf ~/.local/state/nvim
+
+
+# Install basic tools
+sudo apt install git
+
+# LazyGit is awesome
+sudo apt install lazygit
+
+# Install basic lazyvim dependencies
+sudo apt install fzf ripgrep fd-find
+
+# Install neovim. Need to install the one from snap:
+# apt-based is older and lazyvim requires 0.11+
+sudo snap install nvim
+
+# Probably necessary for Lua (used heavily by LazyVim)? TODO revisit
+#sudo apt install luarocks
+
+# TODO needed??? For Markdown
+#sudo apt install nodejs
+
+# TODO needed???
+#sudo apt install build-essential
+
+# Nerd Font: downloaded from https://www.nerdfonts.com/
+# Used by lazyvim a lot, for all sorts of ascii graphics, keyboard characters etc.
+# You want this, otherwise lazyvim will show lots of missing characters.
+if [[ -n -e "~/.fonts/JetBrainsMonoNerdFont*.ttf" ]]; then
+  echo "Downloading Nerd Font"
+  #curl https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
+  #unzip x JetBrainsMono.zip -d ~/.fonts/ -o
+  #rm JetBrainsMono.zip
+  
+  # update font cache
+  #fc-cache -fv
+  
+  # TODO is this necessary? Kitty have NerdFont bundled in?
+  #read -p "change the font for your terminal to 'JetBrains Mono Nerd Font'"
+fi
+
+# kitty - recommended for lazyvim
+sudo apt install kitty
+
+# Install Ruby - not strictly necessary for LazyGit, but
+# I want to set up Ruby LazyVim dev env.
+sudo snap install ruby --classic
+
+
+# Configure LazyVim according to https://www.lazyvim.org/installation
+git clone https://github.com/LazyVim/starter ~/.config/nvim
+
+# Done!
+echo "Done. Run nvim from kitty; then run :LazyHealth"
+
