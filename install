@@ -39,8 +39,10 @@ sudo apt install luarocks
 echo -e "\n* Installing nodejs"
 sudo apt install nodejs
 
-# TODO needed???
-#sudo apt install build-essential
+# Needed to install Ruby-related gems such as "ruby-lsp"
+# The reason is that Mason will install the gem into its own folder, which causes the gem and all deps to be installed,
+# some of the deps require native extensions.
+sudo apt install build-essential
 
 # Nerd Font: downloaded from https://www.nerdfonts.com/
 # Used by lazyvim a lot, for all sorts of ascii graphics, keyboard characters etc.
@@ -77,4 +79,5 @@ git clone https://github.com/LazyVim/starter ~/.config/nvim
 
 # Done!
 echo -e "\n* Done. Run nvim from kitty; then run :LazyHealth"
+echo "- Install LazyVim/Ruby: https://www.lazyvim.org/extras/lang/ruby"
 
