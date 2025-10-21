@@ -1,7 +1,7 @@
-# LazyGit Ubuntu installer
+# LazyVim Ubuntu installer
 
-Sets up [LazyGit](https://www.lazyvim.org) on Ubuntu.
-Also prepares LazyGit for Ruby development.
+Sets up [LazyVim](https://www.lazyvim.org) on Ubuntu.
+Also prepares LazyVim for Ruby development.
 
 Requirements:
 
