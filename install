@@ -13,6 +13,9 @@ rm -rf ~/.local/share/nvim
 # lazyvim/nvim logs go here
 rm -rf ~/.local/state/nvim
 
+# Nuke all Ruby gems
+rm -rf ~/.gem
+
 # Install basic tools
 echo -e "\n* Installing basic tools"
 sudo apt install git
@@ -48,7 +51,7 @@ sudo apt install build-essential
 # Used by lazyvim a lot, for all sorts of ascii graphics, keyboard characters etc.
 # You want this, otherwise lazyvim will show lots of missing characters.
 # NOT NECESSARY FOR KITTY - probably Kitty comes in with NerdFonts bundled in.
-#if [[ ! -e ~/.fonts/JetBrainsMonoNerdFont*.ttf ]]; then
+#if [[ ! -e "~/.fonts/JetBrainsMonoNerdFont*.ttf" ]]; then
   #echo -e "\n* Downloading Nerd Font"
   #curl https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip
   #unzip x JetBrainsMono.zip -d ~/.fonts/ -o
@@ -69,8 +72,27 @@ sudo apt install kitty
 
 # Install Ruby - not strictly necessary for LazyGit, but
 # I want to set up Ruby LazyVim dev env.
+# We'll setup Mise, then install Ruby via mise
+# https://mise.jdx.dev/installing-mise.html
+
+if [[ ! -e "/usr/bin/mise" ]]; then
+  echo -e "\n* Installing Mise"
+  
+  sudo apt update -y && sudo apt install -y gpg sudo wget curl
+  sudo install -dm 755 /etc/apt/keyrings
+  wget -qO - https://mise.jdx.dev/gpg-key.pub | gpg --dearmor | sudo tee /etc/apt/keyrings/mise-archive-keyring.gpg 1> /dev/null
+  echo "deb [signed-by=/etc/apt/keyrings/mise-archive-keyring.gpg arch=amd64] https://mise.jdx.dev/deb stable main" | sudo tee /etc/apt/sources.list.d/mise.list
+  sudo apt update
+  sudo apt install -y mise
+  
+  echo 'mise activate fish | source' >> ~/.config/fish/config.fish
+fi
+
+
 echo -e "\n* Installing Ruby"
-sudo snap install ruby --classic
+# To build Ruby, you need couple of things
+sudo apt install zlib1g-dev libffi-dev libyaml-dev
+mise use --global ruby@3.4
 
 
 # Configure LazyVim according to https://www.lazyvim.org/installation
