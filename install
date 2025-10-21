@@ -31,7 +31,7 @@ sudo apt install fzf ripgrep fd-find
 # Install neovim. Need to install the one from snap:
 # apt-based is older and lazyvim requires 0.11+
 echo -e "\n* Installing NeoVim"
-sudo snap install nvim
+sudo snap install nvim --classic
 
 # Probably necessary for Lua (used heavily by LazyVim)?
 # Fixes Lua-related Query Error: "substitute"
